@@ -1,6 +1,12 @@
-# telegram-bot
+# PHP Telgram Bot API
+
+
 
 PHP 7 wrapper for [Telegram's Bot API](https://core.telegram.org/bots/api).
+
+https://api.travis-ci.org/Stajor/telegram-bot.svg?branch=master
+
+[![Build Status](https://api.travis-ci.org/Stajor/telegram-bot.svg?branch=master)](https://travis-ci.org/Stajor/telegram-bot)
 
 ## Installation
 
