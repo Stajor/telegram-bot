@@ -9,7 +9,7 @@ Add this line to your application's composer.json:
 ```json
 {
     "require": {
-        "Stajor/telegram-bot": "*"
+        "stajor/telegram-bot": "^1.0"
     }
 }
 ```
