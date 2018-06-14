@@ -28,7 +28,7 @@ class Payload {
         return $this->getMessage()->chat;
     }
 
-    public function getCallbackQuery(): CallbackQuery {
+    public function getCallbackQuery(): ?CallbackQuery {
         return $this->getUpdate()->callback_query;
     }
 
