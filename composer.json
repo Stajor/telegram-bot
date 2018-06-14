@@ -23,7 +23,5 @@
     "scripts": {
         "test": "phpunit tests"
     },
-    "version": "1.0.0",
-    "license": "MIT",
-    "minimum-stability": "stable"
+    "license": "MIT"
 }
