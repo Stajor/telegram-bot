@@ -1,5 +1,5 @@
 {
-    "name": "Stajor/telegram-bot",
+    "name": "stajor/telegram-bot",
     "description": "Telegram Bot",
     "type": "library",
     "require": {
