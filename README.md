@@ -1,11 +1,8 @@
 # PHP Telgram Bot API
 
-
-
 PHP 7 wrapper for [Telegram's Bot API](https://core.telegram.org/bots/api).
 
-https://api.travis-ci.org/Stajor/telegram-bot.svg?branch=master
-
+![Minimal PHP version](https://img.shields.io/packagist/php-v/stajor/telegram-bot.svg)
 [![Build Status](https://api.travis-ci.org/Stajor/telegram-bot.svg?branch=master)](https://travis-ci.org/Stajor/telegram-bot)
 
 ## Installation
@@ -23,7 +20,7 @@ and run `composer update`
 
 **Or** run this command in your command line:
 
-    $ composer require Stajor/telegram-bot
+    $ composer require stajor/telegram-bot
     
 ## Telegram API support
 All types and methods of the Telegram Bot API 3.6 are supported.
