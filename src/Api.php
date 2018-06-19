@@ -220,7 +220,11 @@ class Api {
                 $ex = explode('response:', $e->getMessage());
                 $response = json_decode(trim(end($ex)));
 
-                throw new ResponseException($response->description, $response->error_code);
+                if (empty($response)) {
+                    throw new ResponseException($e->getMessage(), $e->getCode());
+                } else {
+                    throw new ResponseException($response->description, $response->error_code);
+                }
             } else {
                 throw $e;
             }
