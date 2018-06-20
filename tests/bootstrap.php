@@ -23,6 +23,9 @@ if (!file_exists($autoloader)) {
 // Include the Composer autoloader.
 require_once $autoloader;
 
+$dotenv = new \Dotenv\Dotenv(__DIR__);
+$dotenv->load();
+
 /*
  * Unset global variables that are no longer needed.
  */

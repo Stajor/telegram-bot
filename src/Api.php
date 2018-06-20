@@ -1,7 +1,6 @@
 <?php namespace Telegram\Bot;
 
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\ClientException;
 use Telegram\Bot\Exceptions\ResponseException;
 use Telegram\Bot\Types\Chat;
 use Telegram\Bot\Types\ChatMember;
@@ -41,7 +40,7 @@ class Api {
     }
 
     public function getWebhookInfo(): WebhookInfo {
-        return $this->request('getWebhookInfo');
+        return $this->request('getWebhookInfo', [], WebhookInfo::class);
     }
 
     public function sendMessage(array $params): Message {

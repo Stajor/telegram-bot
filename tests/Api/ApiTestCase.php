@@ -9,6 +9,6 @@ class ApiTestCase extends TestCase {
     protected static $api;
 
     public static function setUpBeforeClass() {
-        self::$api = new Api('123:ABC', new TestClient());
+        self::$api = new Api(getenv('BOT_TOKEN'), new TestClient());
     }
 }

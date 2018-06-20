@@ -40,4 +40,8 @@ class TestClient extends Client {
     protected function sendChatAction(array $params) {
         return '{"ok":true,"result":true}';
     }
+
+    protected function getWebhookInfo() {
+        return '{"ok":true,"result":{"url":"https://mybot","has_custom_certificate":false,"pending_update_count":0,"max_connections":40}}';
+    }
 }

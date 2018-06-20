@@ -9,6 +9,6 @@ class HandlerTestCase extends TestCase {
     protected static $handler;
 
     public static function setUpBeforeClass() {
-        self::$handler = new CommandsHandler('123:ABC', new TestClient());
+        self::$handler = new CommandsHandler(getenv('BOT_TOKEN'), new TestClient());
     }
 }
