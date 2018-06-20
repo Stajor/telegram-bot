@@ -36,7 +36,9 @@ First of all you need create your own bot and obtain a token
 You can use **Telegram::Bot::Api** standalone
 
 
-```
+```php
+<?php
+
 $api = new \Telegram\Bot\Api('BOT TOKEN');
 $user = $api->getMe();
 ```
@@ -86,7 +88,7 @@ $handler->handle();
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/Stajor/telegram-ruby. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/Stajor/telegram-bot. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
