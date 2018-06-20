@@ -29,7 +29,7 @@ class TestClient extends Client {
 
     protected function getChat(array $params) {
         if ($params['chat_id'] == -1) {
-            throw new ClientException('`400 Bad Request` response:{"ok":false,"error_code":400,"description":"Bad Request: chat not found"}', new Request('POST', '/'));
+            return '{"ok":false,"error_code":400,"description":"Bad Request: chat not found"}';
         }
     }
 

@@ -21,7 +21,7 @@ class Api {
 
     public function __construct(string $token, ClientInterface $client = null) {
         $this->token    = $token;
-        $this->client   = is_null($client) ? new Client() : $client;
+        $this->client   = $client;
     }
 
     public function getMe(): User {
@@ -213,21 +213,11 @@ class Api {
             $params['reply_markup'] = (string)$params['reply_markup'];
         }
 
-        try {
-            $result = $this->client->request('POST', self::API_URL."/bot{$this->token}/{$method}", ['form_params' => $params]);
-        } catch (ClientException $e) {
-            if (strpos($e->getMessage(), 'response:') !== false) {
-                $ex = explode('response:', $e->getMessage());
-                $response = json_decode(trim(end($ex)));
+        $result = $this->getClient()->post(self::API_URL."/bot{$this->token}/{$method}", ['form_params' => $params]);
+        $data   = json_decode($result->getBody(), true);
 
-                if (empty($response)) {
-                    throw new ResponseException($e->getMessage(), $e->getCode());
-                } else {
-                    throw new ResponseException($response->description, $response->error_code);
-                }
-            } else {
-                throw $e;
-            }
+        if (!$data['ok']) {
+            throw new ResponseException($data['description'], $data['error_code']);
         }
 
         $data = json_decode($result->getBody(), true);
@@ -239,6 +229,15 @@ class Api {
         } else {
             return is_null($type) ? $data['result'] : new $type($data['result']);
         }
+    }
 
+    protected function getClient(): ClientInterface {
+        if (empty($this->client)) {
+            $this->client = new Client([
+                'http_errors' => false
+            ]);
+        }
+
+        return $this->client;
     }
 }
