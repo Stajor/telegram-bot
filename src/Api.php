@@ -220,8 +220,6 @@ class Api {
             throw new ResponseException($data['description'], $data['error_code']);
         }
 
-        $data = json_decode($result->getBody(), true);
-
         if (!is_null($type) && $isArray)  {
             return array_map(function($row) use ($type) {
                 return new $type($row);
