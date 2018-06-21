@@ -23,6 +23,10 @@ if (!file_exists($autoloader)) {
 // Include the Composer autoloader.
 require_once $autoloader;
 
+if (!file_exists(__DIR__ .'/.env')) {
+    copy(__DIR__ .'/.env.example', __DIR__ .'/.env');
+}
+
 $dotenv = new \Dotenv\Dotenv(__DIR__);
 $dotenv->load();
 
