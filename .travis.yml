@@ -7,3 +7,6 @@ php:
 
 install:
   - travis_retry composer install --prefer-dist --no-interaction
+
+before_deploy:
+  - mv ./tests/.env.example ./tests/.env
