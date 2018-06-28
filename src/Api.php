@@ -1,6 +1,7 @@
 <?php namespace Telegram\Bot;
 
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Psr7\Stream;
 use Telegram\Bot\Exceptions\ResponseException;
 use Telegram\Bot\Types\Chat;
 use Telegram\Bot\Types\ChatMember;
@@ -208,11 +209,7 @@ class Api {
     }
 
     public function request(string $method, array $params = [], $type = null, $isArray = false) {
-        if (isset($params['reply_markup']) && !empty($params['reply_markup'])) {
-            $params['reply_markup'] = (string)$params['reply_markup'];
-        }
-
-        $result = $this->getClient()->post(self::API_URL."/bot{$this->token}/{$method}", ['form_params' => $params]);
+        $result = $this->getClient()->post(self::API_URL."/bot{$this->token}/{$method}", $this->prepareParams($params));
         $data   = json_decode($result->getBody(), true);
 
         if (!$data['ok']) {
@@ -225,6 +222,26 @@ class Api {
             }, $data['result']);
         } else {
             return is_null($type) ? $data['result'] : new $type($data['result']);
+        }
+    }
+
+    protected function prepareParams(array $params): array {
+        $hasResource    = false;
+        $multipart      = [];
+
+        if (isset($params['reply_markup']) && !empty($params['reply_markup'])) {
+            $params['reply_markup'] = (string)$params['reply_markup'];
+        }
+
+        foreach ($params AS $key => $value) {
+            $hasResource    |= (is_resource($value) || $value instanceof Stream);
+            $multipart[]    = ['name' => $key, 'contents' => $value];
+        }
+
+        if ($hasResource) {
+            return ['multipart' => $multipart];
+        } else {
+            return ['form_params' => $params];
         }
     }
 

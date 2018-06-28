@@ -86,6 +86,12 @@ $handler->addCommand(StartCommand::class);
 $handler->handle();
 ```
 
+#### Send Photo
+```php
+$api = new \Telegram\Bot\Api('BOT TOKEN');
+$api->sendPhoto(['chat_id' => 123,'photo' => fopen('path_to_photo', 'rb')]);
+```
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/Stajor/telegram-bot. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
