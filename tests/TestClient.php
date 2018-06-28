@@ -44,4 +44,8 @@ class TestClient extends Client {
     protected function getWebhookInfo() {
         return '{"ok":true,"result":{"url":"https://mybot","has_custom_certificate":false,"pending_update_count":0,"max_connections":40}}';
     }
+
+    protected function sendPhoto(array $params) {
+        return '{"ok":true,"result":{"message_id":1,"from":{"id":123,"is_bot":true,"first_name":"mybot","username":"mybot"},"chat":{"id":123,"first_name":"Alex","last_name":"B","username":"rrr","type":"private"},"date":1530214125,"photo":[{"file_id":"AgADBAADmq0xG7D3qVGRhEmripIm6_nhmxoABJXHWCtlT_tx66ACAAEC","file_size":288,"width":1,"height":1}]}}';
+    }
 }
