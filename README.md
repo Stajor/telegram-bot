@@ -12,7 +12,7 @@ Add this line to your application's composer.json:
 ```json
 {
     "require": {
-        "stajor/telegram-bot": "^1.0"
+        "stajor/telegram-bot": "^2.0"
     }
 }
 ```

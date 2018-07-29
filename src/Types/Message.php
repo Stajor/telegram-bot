@@ -27,7 +27,9 @@ class Message extends Type {
         'new_chat_photo'        => PhotoSize::class,
         'pinned_message'        => Message::class,
         'invoice'               => Invoice::class,
-        'successful_payment'    => SuccessfulPayment::class
+        'successful_payment'    => SuccessfulPayment::class,
+        'passport_data'         => PassportData::class,
+        'animation'             => Animation::class
     ];
 
     public $message_id;
@@ -72,4 +74,5 @@ class Message extends Type {
     public $invoice;
     public $successful_payment;
     public $connected_website;
+    public $animation;
 }

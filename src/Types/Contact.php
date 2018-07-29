@@ -7,4 +7,5 @@ class Contact extends Type {
     public $first_name;
     public $last_name;
     public $user_id;
+    public $vcard;
 }

@@ -11,4 +11,5 @@ class Venue extends Type {
     public $title;
     public $address;
     public $foursquare_id;
+    public $foursquare_type;
 }

@@ -208,6 +208,19 @@ class Api {
         return $this->request('answerInlineQuery', $params);
     }
 
+    public function setPassportDataErrors(array $params): bool {
+        return $this->request('setPassportDataErrors', $params);
+    }
+
+    public function editMessageMedia(array $params): Message {
+        return $this->request('editMessageMedia', $params);
+    }
+
+    public function sendAnimation(array $params): Message {
+        return $this->request('sendAnimation', $params);
+    }
+
+
     public function request(string $method, array $params = [], $type = null, $isArray = false) {
         $result = $this->getClient()->post(self::API_URL."/bot{$this->token}/{$method}", $this->prepareParams($params));
         $data   = json_decode($result->getBody(), true);
