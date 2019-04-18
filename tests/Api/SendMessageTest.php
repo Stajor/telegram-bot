@@ -9,7 +9,7 @@ use Telegram\Bot\Types\ReplyKeyboardRemove;
 class SendMessageTest extends ApiTestCase {
     protected static $message;
 
-    public static function setUpBeforeClass() {
+    public static function setUpBeforeClass(): void {
         parent::setUpBeforeClass();
 
         self::$message = self::$api->sendMessage(['chat_id' => 123, 'text' => 'test message']);

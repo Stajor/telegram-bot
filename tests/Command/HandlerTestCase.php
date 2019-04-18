@@ -8,7 +8,7 @@ class HandlerTestCase extends TestCase {
     /** @var CommandsHandler $handler */
     protected static $handler;
 
-    public static function setUpBeforeClass() {
+    public static function setUpBeforeClass(): void {
         self::$handler = new CommandsHandler('123:ABC', new TestClient());
     }
 }

@@ -1,4 +1,7 @@
 <?php
+
+use \Dotenv\Dotenv;
+
 /*
  * Set error reporting to the max level.
  */
@@ -27,7 +30,7 @@ if (!file_exists(__DIR__ .'/.env')) {
     copy(__DIR__ .'/.env.example', __DIR__ .'/.env');
 }
 
-$dotenv = new \Dotenv\Dotenv(__DIR__);
+$dotenv = Dotenv::create(__DIR__);
 $dotenv->load();
 
 /*

@@ -5,7 +5,7 @@ use Telegram\Bot\Types\User;
 class GetMeTest extends ApiTestCase {
     protected static $user;
 
-    public static function setUpBeforeClass() {
+    public static function setUpBeforeClass(): void {
         parent::setUpBeforeClass();
 
         self::$user = self::$api->getMe();

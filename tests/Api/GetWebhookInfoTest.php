@@ -5,7 +5,7 @@ use Telegram\Bot\Types\WebhookInfo;
 class GetWebhookInfoTest extends ApiTestCase {
     protected static $webhook;
 
-    public static function setUpBeforeClass() {
+    public static function setUpBeforeClass(): void {
         parent::setUpBeforeClass();
 
         self::$webhook = self::$api->getWebhookInfo();

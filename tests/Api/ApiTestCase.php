@@ -8,7 +8,7 @@ class ApiTestCase extends TestCase {
     /** @var Api */
     protected static $api;
 
-    public static function setUpBeforeClass() {
+    public static function setUpBeforeClass(): void {
         self::$api = new Api('123:ABC', new TestClient());
     }
 }

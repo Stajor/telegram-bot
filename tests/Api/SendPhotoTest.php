@@ -5,7 +5,7 @@ use Telegram\Bot\Types\Message;
 class SendPhotoTest extends ApiTestCase {
     protected static $message;
 
-    public static function setUpBeforeClass() {
+    public static function setUpBeforeClass(): void {
         parent::setUpBeforeClass();
 
         self::$message = self::$api->sendPhoto(['chat_id' => 123, 'photo' => 'pixel.png']);

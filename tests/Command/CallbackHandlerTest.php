@@ -3,7 +3,7 @@
 class CallbackHandlerTest extends HandlerTestCase {
     protected static $command;
 
-    public static function setUpBeforeClass() {
+    public static function setUpBeforeClass(): void {
         parent::setUpBeforeClass();
 
         $input = '{"update_id":183031, "callback_query":{"id":"1840763157951","from":{"id":458,"is_bot":false,"first_name":"Alex","last_name":"B","username":"Alex B","language_code":"ru-RU"},"message":{"message_id":75,"from":{"id":8001,"is_bot":true,"first_name":"myBot","username":"myBot"},"chat":{"id":458,"first_name":"Alex","last_name":"B","username":"Alex B","type":"private"},"date":1528314475,"text":"test"},"chat_instance":"56025909","data":"/test"}}';

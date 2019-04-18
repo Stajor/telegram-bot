@@ -1,7 +1,10 @@
 <?php require_once './vendor/autoload.php';
 
-$client = new \GuzzleHttp\Client();
-$dotenv = new \Dotenv\Dotenv(__DIR__);
+use \GuzzleHttp\Client;
+use \Dotenv\Dotenv;
+
+$client = new Client();
+$dotenv = Dotenv::create(__DIR__);
 $dotenv->load();
 
 
