@@ -2,8 +2,10 @@
 
 use Telegram\Bot\Types\CallbackQuery;
 use Telegram\Bot\Types\Chat;
+use Telegram\Bot\Types\InlineQuery;
 use Telegram\Bot\Types\Message;
 use Telegram\Bot\Types\Update;
+use Telegram\Bot\Types\User;
 
 class Payload {
     private $messagesKeys = ['message', 'edited_message', 'channel_post', 'edited_channel_post'];
@@ -20,8 +22,16 @@ class Payload {
         return $this->update;
     }
 
-    public function getMessage(): Message {
+    public function getMessage(): ?Message {
         return $this->message;
+    }
+
+    public function getInlineQuery(): ?InlineQuery {
+        return $this->getUpdate()->inline_query;
+    }
+
+    public function getUser(): User {
+        return $this->getInlineQuery()->from;
     }
 
     public function getChat(): Chat {

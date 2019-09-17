@@ -64,10 +64,15 @@ class CommandsHandler {
         return $command;
     }
 
-    private function getCommand(Payload $payload, string $command = null): Command {
+    private function getCommand(Payload $payload, string $command = null): ?Command {
         if (is_null($command)) {
-            $messageText    = $payload->getMessage()->text;
-            $queryText      = is_null($payload->getCallbackQuery()) ? null : $payload->getCallbackQuery()->data;
+            if (!empty($payload->getInlineQuery())) {
+                $messageText = $payload->getInlineQuery()->query;
+            } else {
+                $messageText = $payload->getMessage()->text;
+            }
+
+            $queryText = is_null($payload->getCallbackQuery()) ? null : $payload->getCallbackQuery()->data;
         } else {
             $messageText    = $command;
             $queryText      = null;
