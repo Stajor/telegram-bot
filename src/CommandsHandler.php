@@ -68,8 +68,10 @@ class CommandsHandler {
         if (is_null($command)) {
             if (!empty($payload->getInlineQuery())) {
                 $messageText = $payload->getInlineQuery()->query;
-            } else {
+            } elseif (!empty($payload->getMessage())) {
                 $messageText = $payload->getMessage()->text;
+            } else {
+                $messageText = null;
             }
 
             $queryText = is_null($payload->getCallbackQuery()) ? null : $payload->getCallbackQuery()->data;
