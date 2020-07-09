@@ -3,17 +3,20 @@
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Response;
+use Psr\Http\Message\ResponseInterface;
 
 class TestClient extends Client {
     protected $body;
 
-    public function request($method, $uri = '', array $options = []) {
+    public function request(string $method, $uri = '', array $options = []): ResponseInterface {
         $ex = explode('/', $uri);
         $method = end($ex);
 
         if (method_exists($this, $method)) {
             $this->body = $this->{$method}(isset($options['form_params']) ? $options['form_params'] : []);
-            return $this;
+
+            return new Response(200, [], $this->body);
         } else {
             return parent::request($method, $uri, $options);
         }

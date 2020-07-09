@@ -30,7 +30,7 @@ if (!file_exists(__DIR__ .'/.env')) {
     copy(__DIR__ .'/.env.example', __DIR__ .'/.env');
 }
 
-$dotenv = Dotenv::create(__DIR__);
+$dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
 /*
