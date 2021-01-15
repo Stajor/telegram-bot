@@ -5,20 +5,22 @@ use Telegram\Bot\Type;
 class Chat extends Type {
     protected $meta = [
         'photo'             => ChatPhoto::class,
-        'pinned_message'    => Message::class
+        'pinned_message'    => Message::class,
+        'permissions'       => ChatPermissions::class
     ];
 
-    public $id;
-    public $type;
-    public $title;
-    public $username;
-    public $first_name;
-    public $last_name;
-    public $all_members_are_administrators;
-    public $photo;
-    public $description;
-    public $invite_link;
-    public $pinned_message;
-    public $sticker_set_name;
-    public $can_set_sticker_set;
+    public int $id;
+    public string $type;
+    public ?string $title;
+    public ?string $username;
+    public ?string $first_name;
+    public ?string $last_name;
+    public ?ChatPhoto $photo;
+    public ?string $description;
+    public ?string $invite_link;
+    public ?Message $pinned_message;
+    public ?ChatPermissions $permissions;
+    public ?int $slow_mode_delay;
+    public ?string $sticker_set_name;
+    public ?bool $can_set_sticker_set;
 }
