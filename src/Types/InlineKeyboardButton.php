@@ -3,7 +3,7 @@
 use Telegram\Bot\Type;
 
 class InlineKeyboardButton extends Type {
-    protected $meta = [
+    protected array $meta = [
         'callback_game' => CallbackGame::class
     ];
 

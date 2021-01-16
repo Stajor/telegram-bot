@@ -3,7 +3,7 @@
 use Telegram\Bot\Type;
 
 class Chat extends Type {
-    protected $meta = [
+    protected array $meta = [
         'photo'             => ChatPhoto::class,
         'pinned_message'    => Message::class,
         'permissions'       => ChatPermissions::class

@@ -3,7 +3,7 @@
 use Telegram\Bot\Type;
 
 class SuccessfulPayment extends Type {
-    protected $meta = [
+    protected array $meta = [
         'order_info' => OrderInfo::class
     ];
 

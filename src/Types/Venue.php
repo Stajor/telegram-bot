@@ -3,7 +3,7 @@
 use Telegram\Bot\Type;
 
 class Venue extends Type {
-    protected $meta = [
+    protected array $meta = [
         'location' => Location::class
     ];
 

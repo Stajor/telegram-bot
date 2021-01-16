@@ -3,7 +3,7 @@
 use Telegram\Bot\Type;
 
 class InlineQuery extends Type {
-    protected $meta = [
+    protected array $meta = [
         'from'      => User::class,
         'location'  => Location::class
     ];

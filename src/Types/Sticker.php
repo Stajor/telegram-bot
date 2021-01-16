@@ -3,7 +3,7 @@
 use Telegram\Bot\Type;
 
 class Sticker extends Type {
-    protected $meta = [
+    protected array $meta = [
         'thumb'         => PhotoSize::class,
         'mask_position' => MaskPosition::class
     ];

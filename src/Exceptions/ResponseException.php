@@ -1,3 +1,5 @@
 <?php namespace Telegram\Bot\Exceptions;
 
-class ResponseException extends \Exception {}
+use Exception;
+
+class ResponseException extends Exception {}

@@ -3,7 +3,7 @@
 use Telegram\Bot\Type;
 
 class PreCheckoutQuery extends Type {
-    protected $meta = [
+    protected array $meta = [
         'from'          => User::class,
         'order_info'    => OrderInfo::class
     ];

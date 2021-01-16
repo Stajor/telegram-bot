@@ -1,8 +1,6 @@
 <?php namespace Telegram\Bot\Test;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\ClientException;
-use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 
@@ -26,29 +24,27 @@ class TestClient extends Client {
         return $this->body;
     }
 
-    protected function getMe(array $params) {
+    protected function getMe(array $params): string {
         return '{"ok":true,"result":{"id":321,"is_bot":true,"first_name":"myBot","username":"myBot"}}';
     }
 
-    protected function getChat(array $params) {
-        if ($params['chat_id'] == -1) {
-            return '{"ok":false,"error_code":400,"description":"Bad Request: chat not found"}';
-        }
+    protected function getChat(array $params): string {
+        return '{"ok":false,"error_code":400,"description":"Bad Request: chat not found"}';
     }
 
-    protected function sendMessage(array $params) {
+    protected function sendMessage(array $params): string {
         return '{"ok":true,"result":{"message_id":1,"from":{"id":123,"is_bot":true,"first_name":"myBot","username":"myBot"},"chat":{"id":321,"first_name":"Alex","last_name":"B","username":"Alex B","type":"private"},"date":1528813635,"text":"test message"}}';
     }
 
-    protected function sendChatAction(array $params) {
+    protected function sendChatAction(array $params): string {
         return '{"ok":true,"result":true}';
     }
 
-    protected function getWebhookInfo() {
+    protected function getWebhookInfo(): string {
         return '{"ok":true,"result":{"url":"https://mybot","has_custom_certificate":false,"pending_update_count":0,"max_connections":40}}';
     }
 
-    protected function sendPhoto(array $params) {
+    protected function sendPhoto(array $params): string {
         return '{"ok":true,"result":{"message_id":1,"from":{"id":123,"is_bot":true,"first_name":"mybot","username":"mybot"},"chat":{"id":123,"first_name":"Alex","last_name":"B","username":"rrr","type":"private"},"date":1530214125,"photo":[{"file_id":"AgADBAADmq0xG7D3qVGRhEmripIm6_nhmxoABJXHWCtlT_tx66ACAAEC","file_size":288,"width":1,"height":1}]}}';
     }
 }

@@ -1,233 +1,219 @@
 <?php namespace Telegram\Bot;
 
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Stream;
 use Telegram\Bot\Exceptions\ResponseException;
+use Telegram\Bot\Types\BotCommand;
 use Telegram\Bot\Types\Chat;
 use Telegram\Bot\Types\ChatMember;
 use Telegram\Bot\Types\File;
+use Telegram\Bot\Types\GameHighScore;
 use Telegram\Bot\Types\Message;
+use Telegram\Bot\Types\MessageId;
+use Telegram\Bot\Types\Poll;
+use Telegram\Bot\Types\StickerSet;
 use Telegram\Bot\Types\Update;
 use Telegram\Bot\Types\User;
 use GuzzleHttp\Client;
 use Telegram\Bot\Types\UserProfilePhotos;
 use Telegram\Bot\Types\WebhookInfo;
 
+/**
+ * @method User getMe()
+ * @method bool logOut()
+ * @method bool close()
+ * @method Update[] getUpdates(array $params)
+ * @method bool setWebhook(array $params)
+ * @method bool deleteWebhook()
+ * @method WebhookInfo getWebhookInfo()
+ * @method Message sendMessage(array $params)
+ * @method Message forwardMessage(array $params)
+ * @method MessageId copyMessage(array $params)
+ * @method Message editMessageText(array $params)
+ * @method Message editMessageCaption(array $params)
+ * @method Message editMessageReplyMarkup(array $params)
+ * @method bool deleteMessage(array $params)
+ * @method Message sendPhoto(array $params)
+ * @method Message sendAudio(array $params)
+ * @method Message sendDocument(array $params)
+ * @method Message sendVideo(array $params)
+ * @method Message sendVoice(array $params)
+ * @method Message sendVideoNote(array $params)
+ * @method Message sendMediaGroup(array $params)
+ * @method Message sendLocation(array $params)
+ * @method Message editMessageLiveLocation(array $params)
+ * @method Message stopMessageLiveLocation(array $params)
+ * @method Message sendVenue(array $params)
+ * @method Message sendContact(array $params)
+ * @method Message sendPoll(array $params)
+ * @method Poll stopPoll(array $params)
+ * @method Message sendDice(array $params)
+ * @method bool sendChatAction(array $params)
+ * @method UserProfilePhotos getUserProfilePhotos(array $params)
+ * @method File getFile(array $params)
+ * @method bool kickChatMember(array $params)
+ * @method bool unbanChatMember(array $params)
+ * @method bool restrictChatMember(array $params)
+ * @method bool promoteChatMember(array $params)
+ * @method string exportChatInviteLink(array $params)
+ * @method bool setChatPhoto(array $params)
+ * @method bool deleteChatPhoto(array $params)
+ * @method bool setChatTitle(array $params)
+ * @method bool setChatDescription(array $params)
+ * @method bool pinChatMessage(array $params)
+ * @method bool unpinChatMessage(array $params)
+ * @method bool unpinAllChatMessages(array $params)
+ * @method bool leaveChat(array $params)
+ * @method Chat getChat(array $params)
+ * @method bool setChatPermissions(array $params)
+ * @method ChatMember[] getChatAdministrators(array $params)
+ * @method bool setChatAdministratorCustomTitle(array $params)
+ * @method int getChatMembersCount(array $params)
+ * @method ChatMember getChatMember(array $params)
+ * @method bool setChatStickerSet(array $params)
+ * @method bool deleteChatStickerSet(array $params)
+ * @method bool answerCallbackQuery(array $params)
+ * @method bool answerInlineQuery(array $params)
+ * @method Message editMessageMedia(array $params)
+ * @method Message sendAnimation(array $params)
+ * @method bool setMyCommands(array $params)
+ * @method BotCommand[] getMyCommands()
+ * @method Message sendSticker(array $params)
+ * @method StickerSet getStickerSet(array $params)
+ * @method File uploadStickerFile(array $params)
+ * @method bool createNewStickerSet(array $params)
+ * @method bool addStickerToSet(array $params)
+ * @method bool setStickerPositionInSet(array $params)
+ * @method bool deleteStickerFromSet(array $params)
+ * @method bool setStickerSetThumb(array $params)
+ * @method Message sendInvoice(array $params)
+ * @method bool answerShippingQuery(array $params)
+ * @method bool answerPreCheckoutQuery(array $params)
+ * @method bool setPassportDataErrors(array $params)
+ * @method Message sendGame(array $params)
+ * @method bool setGameScore(array $params)
+ * @method GameHighScore[] getGameHighScores(array $params)
+ */
 class Api {
     const API_URL = 'https://api.telegram.org';
 
-    protected $token;
-    protected $client;
+    protected string $token;
+    protected ?ClientInterface $client;
+    protected array $methods = [
+        'getMe' => ['return' => User::class],
+        'logOut' => [],
+        'close' => [],
+        'getUpdates' => ['return' => Update::class, 'array' => true],
+        'setWebhook' => [],
+        'deleteWebhook' => [],
+        'getWebhookInfo' => ['return' => WebhookInfo::class],
+        'sendMessage' => ['return' => Message::class],
+        'forwardMessage' => ['return' => Message::class],
+        'editMessageText' => ['return' => Message::class],
+        'editMessageCaption' => ['return' => Message::class],
+        'editMessageReplyMarkup' => ['return' => Message::class],
+        'deleteMessage' => [],
+        'copyMessage' => ['return' => MessageId::class],
+        'sendPhoto' => ['return' => Message::class],
+        'sendAudio' => ['return' => Message::class],
+        'sendDocument' => ['return' => Message::class],
+        'sendVideo' => ['return' => Message::class],
+        'sendVoice' => ['return' => Message::class],
+        'sendVideoNote' => ['return' => Message::class],
+        'sendMediaGroup' => ['return' => Message::class],
+        'sendLocation' => ['return' => Message::class],
+        'editMessageLiveLocation' => ['return' => Message::class],
+        'stopMessageLiveLocation' => ['return' => Message::class],
+        'sendVenue' => ['return' => Message::class],
+        'sendContact' => ['return' => Message::class],
+        'sendPoll' => ['return' => Message::class],
+        'stopPoll' => ['return' => Poll::class],
+        'sendDice' => ['return' => Message::class],
+        'sendChatAction' => [],
+        'getUserProfilePhotos' => ['return' => UserProfilePhotos::class],
+        'getFile' => ['return' => File::class],
+        'kickChatMember' => [],
+        'unbanChatMember' => [],
+        'restrictChatMember' => [],
+        'promoteChatMember' => [],
+        'exportChatInviteLink' => [],
+        'setChatPhoto' => [],
+        'deleteChatPhoto' => [],
+        'setChatTitle' => [],
+        'setChatDescription' => [],
+        'pinChatMessage' => [],
+        'unpinChatMessage' => [],
+        'unpinAllChatMessages' => [],
+        'leaveChat' => [],
+        'getChat' => ['return' => Chat::class],
+        'setChatPermissions' => [],
+        'getChatAdministrators' => ['return' => ChatMember::class, 'array' => true],
+        'setChatAdministratorCustomTitle' => [],
+        'getChatMembersCount' => [],
+        'getChatMember' => ['return' => ChatMember::class],
+        'setChatStickerSet' => [],
+        'deleteChatStickerSet' => [],
+        'answerCallbackQuery' => [],
+        'answerInlineQuery' => [],
+        'editMessageMedia' => ['return' => Message::class],
+        'sendAnimation' => ['return' => Message::class],
+        'setMyCommands' => [],
+        'getMyCommands' => ['return' => BotCommand::class, 'array' => true],
+        'sendSticker' => ['return' => Message::class],
+        'getStickerSet' => ['return' => StickerSet::class],
+        'uploadStickerFile' => ['return' => File::class],
+        'createNewStickerSet' => [],
+        'addStickerToSet' => [],
+        'setStickerPositionInSet' => [],
+        'deleteStickerFromSet' => [],
+        'setStickerSetThumb' => [],
+        'sendInvoice' => ['return' => Message::class],
+        'answerShippingQuery' => [],
+        'answerPreCheckoutQuery' => [],
+        'setPassportDataErrors' => [],
+        'sendGame' => ['return' => Message::class],
+        'setGameScore' => [],
+        'getGameHighScores' => ['return' => GameHighScore::class, 'array' => true],
+    ];
 
+    /**
+     * Api constructor.
+     * @param string $token
+     * @param ClientInterface|null $client
+     */
     public function __construct(string $token, ClientInterface $client = null) {
         $this->token    = $token;
         $this->client   = $client;
     }
 
-    public function getMe(): User {
-        return $this->request('getMe', [], User::class);
+    /**
+     * @param $name
+     * @param $arguments
+     * @return mixed
+     * @throws GuzzleException
+     * @throws ResponseException
+     */
+    public function __call($name, $arguments) {
+        return $this->request($name, $arguments[0] ?? []);
     }
 
-    public function getUpdates(array $params): array {
-        return $this->request('getUpdates', $params, Update::class, true);
-    }
-
-    public function setWebhook(array $params): bool {
-        return $this->request('setWebhook', $params);
-    }
-
-    public function deleteWebhook(): bool {
-        return $this->request('deleteWebhook');
-    }
-
-    public function getWebhookInfo(): WebhookInfo {
-        return $this->request('getWebhookInfo', [], WebhookInfo::class);
-    }
-
-    public function sendMessage(array $params): Message {
-        return $this->request('sendMessage', $params, Message::class);
-    }
-
-    public function forwardMessage(array $params): Message {
-        return $this->request('forwardMessage', $params, Message::class);
-    }
-
-    public function editMessageText(array $params): Message {
-        return $this->request('editMessageText', $params, Message::class);
-    }
-
-    public function editMessageCaption(array $params): Message {
-        return $this->request('editMessageCaption', $params, Message::class);
-    }
-
-    public function editMessageReplyMarkup(array $params): Message {
-        return $this->request('editMessageReplyMarkup', $params, Message::class);
-    }
-
-    public function deleteMessage(array $params): bool {
-        return $this->request('deleteMessage', $params);
-    }
-
-    public function sendPhoto(array $params): Message {
-        return $this->request('sendPhoto', $params, Message::class);
-    }
-
-    public function sendAudio(array $params): Message {
-        return $this->request('sendAudio', $params, Message::class);
-    }
-
-    public function sendDocument(array $params): Message {
-        return $this->request('sendDocument', $params, Message::class);
-    }
-
-    public function sendVideo(array $params): Message {
-        return $this->request('sendVideo', $params, Message::class);
-    }
-
-    public function sendVoice(array $params): Message {
-        return $this->request('sendVoice', $params, Message::class);
-    }
-
-    public function sendVideoNote(array $params): Message {
-        return $this->request('sendVideoNote', $params, Message::class);
-    }
-
-    public function sendMediaGroup(array $params): Message {
-        return $this->request('sendMediaGroup', $params, Message::class);
-    }
-
-    public function sendLocation(array $params): Message {
-        return $this->request('sendLocation', $params, Message::class);
-    }
-
-    public function editMessageLiveLocation(array $params): Message {
-        return $this->request('editMessageLiveLocation', $params, Message::class);
-    }
-
-    public function stopMessageLiveLocation(array $params): Message {
-        return $this->request('stopMessageLiveLocation', $params, Message::class);
-    }
-
-    public function sendVenue(array $params): Message {
-        return $this->request('sendVenue', $params, Message::class);
-    }
-
-    public function sendContact(array $params): Message {
-        return $this->request('sendContact', $params, Message::class);
-    }
-
-    public function sendChatAction(array $params): bool {
-        return $this->request('sendChatAction', $params);
-    }
-
-    public function getUserProfilePhotos(array $params): UserProfilePhotos {
-        return $this->request('getUserProfilePhotos', $params, UserProfilePhotos::class);
-    }
-
-    public function getFile(array $params): File {
-        return $this->request('getFile', $params, File::class);
-    }
-
-    public function kickChatMember(array $params): bool {
-        return $this->request('kickChatMember', $params);
-    }
-
-    public function unbanChatMember(array $params): bool {
-        return $this->request('unbanChatMember', $params);
-    }
-
-    public function restrictChatMember(array $params): bool {
-        return $this->request('restrictChatMember', $params);
-    }
-
-    public function promoteChatMember(array $params): bool {
-        return $this->request('promoteChatMember', $params);
-    }
-
-    public function exportChatInviteLink(array $params): string {
-        return $this->request('exportChatInviteLink', $params);
-    }
-
-    public function setChatPhoto(array $params): bool {
-        return $this->request('setChatPhoto', $params);
-    }
-
-    public function deleteChatPhoto(array $params): bool {
-        return $this->request('deleteChatPhoto', $params);
-    }
-
-    public function setChatTitle(array $params): bool {
-        return $this->request('setChatTitle', $params);
-    }
-
-    public function setChatDescription(array $params): bool {
-        return $this->request('setChatDescription', $params);
-    }
-
-    public function pinChatMessage(array $params): bool {
-        return $this->request('pinChatMessage', $params);
-    }
-
-    public function unpinChatMessage(array $params): bool {
-        return $this->request('unpinChatMessage', $params);
-    }
-
-    public function leaveChat(array $params): bool {
-        return $this->request('leaveChat', $params);
-    }
-
-    public function getChat(array $params): Chat {
-        return $this->request('getChat', $params, Chat::class);
-    }
-
-    public function getChatAdministrators(array $params): array {
-        return $this->request('getChatAdministrators', $params, ChatMember::class, true);
-    }
-
-    public function getChatMembersCount(array $params): int {
-        return $this->request('getChatMembersCount', $params);
-    }
-
-    public function getChatMember(array $params): ChatMember {
-        return $this->request('getChatMember', $params, ChatMember::class);
-    }
-
-    public function setChatStickerSet(array $params): bool {
-        return $this->request('setChatStickerSet', $params);
-    }
-
-    public function deleteChatStickerSet(array $params): bool {
-        return $this->request('deleteChatStickerSet', $params);
-    }
-
-    public function answerCallbackQuery(array $params): bool {
-        return $this->request('answerCallbackQuery', $params);
-    }
-
-    public function answerInlineQuery(array $params): bool {
-        return $this->request('answerInlineQuery', $params);
-    }
-
-    public function setPassportDataErrors(array $params): bool {
-        return $this->request('setPassportDataErrors', $params);
-    }
-
-    public function editMessageMedia(array $params): Message {
-        return $this->request('editMessageMedia', $params);
-    }
-
-    public function sendAnimation(array $params): Message {
-        return $this->request('sendAnimation', $params);
-    }
-
-
-    public function request(string $method, array $params = [], $type = null, $isArray = false) {
+    /**
+     * @param string $method
+     * @param array $params
+     * @return mixed
+     * @throws ResponseException|GuzzleException
+     */
+    public function request(string $method, array $params = []) {
         $result = $this->getClient()->post(self::API_URL."/bot{$this->token}/{$method}", $this->prepareParams($params));
         $data   = json_decode($result->getBody(), true);
 
         if (!$data['ok']) {
             throw new ResponseException($data['description'], $data['error_code']);
         }
+
+        $type       = $this->methods[$method]['return'] ?? null;
+        $isArray    = $this->methods[$method]['array'] ?? null;
 
         if (!is_null($type) && $isArray)  {
             return array_map(function($row) use ($type) {
@@ -258,7 +244,7 @@ class Api {
         }
     }
 
-    protected function getClient(): ClientInterface {
+    protected function getClient(): Client {
         if (empty($this->client)) {
             $this->client = new Client([
                 'http_errors' => false

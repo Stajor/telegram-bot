@@ -1,6 +1,6 @@
 # PHP Telgram Bot API
 
-PHP 7 wrapper for [Telegram's Bot API](https://core.telegram.org/bots/api).
+PHP wrapper for [Telegram's Bot API](https://core.telegram.org/bots/api).
 
 ![Minimal PHP version](https://img.shields.io/packagist/php-v/stajor/telegram-bot.svg)
 [![Build Status](https://api.travis-ci.org/Stajor/telegram-bot.svg?branch=master)](https://travis-ci.org/Stajor/telegram-bot)
@@ -12,7 +12,7 @@ Add this line to your application's composer.json:
 ```json
 {
     "require": {
-        "stajor/telegram-bot": "^2.0"
+        "stajor/telegram-bot": "^3.0"
     }
 }
 ```

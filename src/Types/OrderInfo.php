@@ -3,7 +3,7 @@
 use Telegram\Bot\Type;
 
 class OrderInfo extends Type {
-    protected $meta = [
+    protected array $meta = [
         'shipping_address' => ShippingAddress::class
     ];
 

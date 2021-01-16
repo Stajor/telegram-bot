@@ -3,7 +3,7 @@
 use Telegram\Bot\Type;
 
 class ChatMember extends Type {
-    protected $meta = [
+    protected array $meta = [
         'user' => User::class
     ];
 

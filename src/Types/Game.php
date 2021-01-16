@@ -3,7 +3,7 @@
 use Telegram\Bot\Type;
 
 class Game extends Type {
-    protected $meta = [
+    protected array $meta = [
         'photo'         => PhotoSize::class,
         'text_entities' => MessageEntity::class,
         'animation'     => Animation::class

@@ -3,7 +3,7 @@
 use Telegram\Bot\Type;
 
 class UserProfilePhotos extends Type {
-    protected $meta = [
+    protected array $meta = [
         'photos' => PhotoSize::class
     ];
 

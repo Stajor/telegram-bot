@@ -3,7 +3,7 @@
 use Telegram\Bot\Type;
 
 class ShippingQuery extends Type {
-    protected $meta = [
+    protected array $meta = [
         'from'              => User::class,
         'shipping_address'  => ShippingAddress::class
     ];

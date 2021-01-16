@@ -3,7 +3,7 @@
 use Telegram\Bot\Type;
 
 class EncryptedPassportElement extends Type {
-    protected $meta = [
+    protected array $meta = [
         'files'         => PassportFile::class,
         'front_side'    => PassportFile::class,
         'reverse_side'  => PassportFile::class,

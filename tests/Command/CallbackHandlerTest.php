@@ -1,5 +1,7 @@
 <?php namespace Telegram\Bot\Test\Command;
 
+use Exception;
+
 class CallbackHandlerTest extends HandlerTestCase {
     protected static $command;
 
@@ -23,11 +25,11 @@ class CallbackHandlerTest extends HandlerTestCase {
 
         try {
             self::$command->triggerCommand('test');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $message = $e->getMessage();
         }
 
-        $this->assertEquals($message, '');
+        $this->assertEquals('', $message);
     }
 
     public function testFallbackCommand() {

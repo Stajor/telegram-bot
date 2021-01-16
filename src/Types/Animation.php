@@ -3,7 +3,7 @@
 use Telegram\Bot\Type;
 
 class Animation extends Type {
-    protected $meta = [
+    protected array $meta = [
         'thumb' => PhotoSize::class
     ];
 

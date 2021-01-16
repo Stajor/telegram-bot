@@ -3,13 +3,14 @@
 use Telegram\Bot\Type;
 
 class MessageEntity extends Type {
-    protected $meta = [
+    protected array $meta = [
         'user' => User::class
     ];
 
-    public $type;
-    public $offset;
-    public $length;
-    public $url;
-    public $user;
+    public string $type;
+    public int $offset;
+    public int $length;
+    public string $url;
+    public User $user;
+    public string $language;
 }

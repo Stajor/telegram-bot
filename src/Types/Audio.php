@@ -3,7 +3,7 @@
 use Telegram\Bot\Type;
 
 class Audio extends Type {
-    protected $meta = [
+    protected array $meta = [
         'thumb' => PhotoSize::class
     ];
 

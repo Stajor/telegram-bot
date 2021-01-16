@@ -1,7 +1,7 @@
 <?php namespace Telegram\Bot;
 
 class Type {
-    protected $meta = [];
+    protected array $meta = [];
 
     public function __construct(array $data) {
         foreach ($data AS $key => $value) {

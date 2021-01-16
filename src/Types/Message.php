@@ -3,7 +3,7 @@
 use Telegram\Bot\Type;
 
 class Message extends Type {
-    protected $meta = [
+    protected array $meta = [
         'from'                  => User::class,
         'chat'                  => Chat::class,
         'forward_from'          => User::class,

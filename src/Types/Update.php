@@ -3,7 +3,7 @@
 use Telegram\Bot\Type;
 
 class Update extends Type {
-    protected $meta = [
+    protected array $meta = [
         'message'               => Message::class,
         'edited_message'        => Message::class,
         'channel_post'          => Message::class,

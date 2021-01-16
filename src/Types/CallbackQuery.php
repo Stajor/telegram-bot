@@ -3,7 +3,7 @@
 use Telegram\Bot\Type;
 
 class CallbackQuery extends Type {
-    protected $meta = [
+    protected array $meta = [
         'from'      => User::class,
         'message'   => Message::class
     ];
