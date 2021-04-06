@@ -20,17 +20,17 @@ class Update extends Type {
     ];
 
     public int $update_id;
-    public Message $message;
-    public Message $edited_message;
-    public Message $channel_post;
-    public Message $edited_channel_post;
-    public InlineQuery $inline_query;
-    public ChosenInlineResult $chosen_inline_result;
-    public CallbackQuery $callback_query;
-    public ShippingQuery $shipping_query;
-    public PreCheckoutQuery $pre_checkout_query;
-    public Poll $poll;
-    public PollAnswer $poll_answer;
-    public ChatMemberUpdated $my_chat_member;
-    public ChatMemberUpdated $chat_member;
+    public ?Message $message = null;
+    public ?Message $edited_message = null;
+    public ?Message $channel_post = null;
+    public ?Message $edited_channel_post = null;
+    public ?InlineQuery $inline_query = null;
+    public ?ChosenInlineResult $chosen_inline_result = null;
+    public ?CallbackQuery $callback_query = null;
+    public ?ShippingQuery $shipping_query = null;
+    public ?PreCheckoutQuery $pre_checkout_query = null;
+    public ?Poll $poll = null;
+    public ?PollAnswer $poll_answer = null;
+    public ?ChatMemberUpdated $my_chat_member = null;
+    public ?ChatMemberUpdated $chat_member = null;
 }

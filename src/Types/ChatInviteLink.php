@@ -11,6 +11,6 @@ class ChatInviteLink extends Type {
     public User $creator;
     public bool $is_primary;
     public bool $is_revoked;
-    public ?int $expire_date;
-    public ?int $member_limit;
+    public ?int $expire_date = null;
+    public ?int $member_limit = null;
 }
