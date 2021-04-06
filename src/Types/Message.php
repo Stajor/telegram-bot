@@ -4,75 +4,97 @@ use Telegram\Bot\Type;
 
 class Message extends Type {
     protected array $meta = [
-        'from'                  => User::class,
-        'chat'                  => Chat::class,
-        'forward_from'          => User::class,
-        'forward_from_chat'     => Chat::class,
-        'reply_to_message'      => Message::class,
-        'entities'              => MessageEntity::class,
-        'caption_entities'      => MessageEntity::class,
-        'audio'                 => Audio::class,
-        'document'              => Document::class,
-        'game'                  => Game::class,
-        'photo'                 => PhotoSize::class,
-        'sticker'               => Sticker::class,
-        'video'                 => Video::class,
-        'voice'                 => Voice::class,
-        'video_note'            => VideoNote::class,
-        'contact'               => Contact::class,
-        'location'              => Location::class,
-        'venue'                 => Venue::class,
-        'new_chat_members'      => User::class,
-        'left_chat_member'      => User::class,
-        'new_chat_photo'        => PhotoSize::class,
-        'pinned_message'        => Message::class,
-        'invoice'               => Invoice::class,
-        'successful_payment'    => SuccessfulPayment::class,
-        'passport_data'         => PassportData::class,
-        'animation'             => Animation::class
+        'chat'                              => Chat::class,
+        'dice'                              => Dice::class,
+        'from'                              => User::class,
+        'forward_from'                      => User::class,
+        'forward_from_chat'                 => Chat::class,
+        'reply_to_message'                  => Message::class,
+        'entities'                          => MessageEntity::class,
+        'caption_entities'                  => MessageEntity::class,
+        'audio'                             => Audio::class,
+        'document'                          => Document::class,
+        'game'                              => Game::class,
+        'photo'                             => PhotoSize::class,
+        'sticker'                           => Sticker::class,
+        'video'                             => Video::class,
+        'voice'                             => Voice::class,
+        'video_note'                        => VideoNote::class,
+        'contact'                           => Contact::class,
+        'location'                          => Location::class,
+        'venue'                             => Venue::class,
+        'new_chat_members'                  => User::class,
+        'left_chat_member'                  => User::class,
+        'new_chat_photo'                    => PhotoSize::class,
+        'pinned_message'                    => Message::class,
+        'invoice'                           => Invoice::class,
+        'sender_chat'                       => Chat::class,
+        'successful_payment'                => SuccessfulPayment::class,
+        'passport_data'                     => PassportData::class,
+        'animation'                         => Animation::class,
+        'via_bot'                           => User::class,
+        'poll'                              => Poll::class,
+        'message_auto_delete_timer_changed' => MessageAutoDeleteTimerChanged::class,
+        'proximity_alert_triggered'         => ProximityAlertTriggered::class,
+        'voice_chat_started'                => VoiceChatStarted::class,
+        'voice_chat_ended'                  => VoiceChatEnded::class,
+        'voice_chat_participants_invited'   => VoiceChatParticipantsInvited::class,
+        'reply_markup'                      => InlineKeyboardMarkup::class
     ];
 
-    public $message_id;
-    public $from;
-    public $date;
-    public $chat;
-    public $forward_from;
-    public $forward_from_chat;
-    public $forward_from_message_id;
-    public $forward_signature;
-    public $forward_date;
-    public $reply_to_message;
-    public $edit_date;
-    public $media_group_id;
-    public $author_signature;
-    public $text;
-    public $entities;
-    public $caption_entities;
-    public $audio;
-    public $document;
-    public $game;
-    public $photo;
-    public $sticker;
-    public $video;
-    public $voice;
-    public $video_note;
-    public $caption;
-    public $contact;
-    public $location;
-    public $venue;
-    public $new_chat_members;
-    public $left_chat_member;
-    public $new_chat_title;
-    public $new_chat_photo;
-    public $delete_chat_photo;
-    public $group_chat_created;
-    public $supergroup_chat_created;
-    public $channel_chat_created;
-    public $migrate_to_chat_id;
-    public $migrate_from_chat_id;
-    public $pinned_message;
-    public $invoice;
-    public $successful_payment;
-    public $connected_website;
-    public $animation;
+    public int $message_id;
+    public ?User $from;
+    public ?Chat $sender_chat;
+    public int $date;
+    public Chat $chat;
+    public ?User $forward_from;
+    public ?Chat $forward_from_chat;
+    public ?int $forward_from_message_id;
+    public ?string $forward_signature;
+    public ?string $forward_sender_name;
+    public ?int $forward_date;
+    public ?Message $reply_to_message;
+    public ?User $via_bot;
+    public ?int $edit_date;
+    public ?string $media_group_id;
+    public ?string $author_signature;
+    public ?string $text;
+    public ?array $entities;
+    public ?Animation $animation;
+    public ?Audio $audio;
+    public ?Document $document;
+    public ?array $photo;
+    public ?Sticker $sticker;
+    public ?Video $video;
+    public ?VideoNote $video_note;
+    public ?Voice $voice;
+    public ?string $caption;
+    public ?array $caption_entities;
+    public ?Contact $contact;
+    public ?Dice $dice;
+    public ?Game $game;
+    public ?Poll $poll;
+    public ?Venue $venue;
+    public ?Location $location;
+    public ?array $new_chat_members;
+    public ?User $left_chat_member;
+    public ?string $new_chat_title;
+    public ?array $new_chat_photo;
+    public ?bool $delete_chat_photo;
+    public ?bool $group_chat_created;
+    public ?bool $supergroup_chat_created;
+    public ?bool $channel_chat_created;
+    public ?MessageAutoDeleteTimerChanged $message_auto_delete_timer_changed;
+    public ?int $migrate_to_chat_id;
+    public ?int $migrate_from_chat_id;
+    public ?Message $pinned_message;
+    public ?Invoice $invoice;
+    public ?SuccessfulPayment $successful_payment;
+    public ?string $connected_website;
+    public ?PassportData $passport_data;
+    public ?ProximityAlertTriggered $proximity_alert_triggered;
+    public ?VoiceChatStarted $voice_chat_started;
+    public ?VoiceChatEnded $voice_chat_ended;
+    public ?VoiceChatParticipantsInvited $voice_chat_participants_invited;
+    public ?InlineKeyboardMarkup $reply_markup;
 }

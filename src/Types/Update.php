@@ -12,19 +12,25 @@ class Update extends Type {
         'chosen_inline_result'  => ChosenInlineResult::class,
         'callback_query'        => CallbackQuery::class,
         'shipping_query'        => ShippingQuery::class,
-        'pre_checkout_query'    => PreCheckoutQuery::class
+        'pre_checkout_query'    => PreCheckoutQuery::class,
+        'poll'                  => Poll::class,
+        'poll_answer'           => PollAnswer::class,
+        'my_chat_member'        => ChatMemberUpdated::class,
+        'chat_member'           => ChatMemberUpdated::class
     ];
 
-    public $update_id;
-    /** @var Message $message */
-    public $message;
-    public $edited_message;
-    public $channel_post;
-    public $edited_channel_post;
-    public $inline_query;
-    public $chosen_inline_result;
-    /** @var CallbackQuery $callback_query */
-    public $callback_query;
-    public $shipping_query;
-    public $pre_checkout_query;
+    public int $update_id;
+    public Message $message;
+    public Message $edited_message;
+    public Message $channel_post;
+    public Message $edited_channel_post;
+    public InlineQuery $inline_query;
+    public ChosenInlineResult $chosen_inline_result;
+    public CallbackQuery $callback_query;
+    public ShippingQuery $shipping_query;
+    public PreCheckoutQuery $pre_checkout_query;
+    public Poll $poll;
+    public PollAnswer $poll_answer;
+    public ChatMemberUpdated $my_chat_member;
+    public ChatMemberUpdated $chat_member;
 }

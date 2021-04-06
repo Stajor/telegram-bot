@@ -6,6 +6,7 @@ use GuzzleHttp\Psr7\Stream;
 use Telegram\Bot\Exceptions\ResponseException;
 use Telegram\Bot\Types\BotCommand;
 use Telegram\Bot\Types\Chat;
+use Telegram\Bot\Types\ChatInviteLink;
 use Telegram\Bot\Types\ChatMember;
 use Telegram\Bot\Types\File;
 use Telegram\Bot\Types\GameHighScore;
@@ -58,6 +59,9 @@ use Telegram\Bot\Types\WebhookInfo;
  * @method bool promoteChatMember(array $params)
  * @method string exportChatInviteLink(array $params)
  * @method bool setChatPhoto(array $params)
+ * @method ChatInviteLink createChatInviteLink(array $params)
+ * @method ChatInviteLink editChatInviteLink(array $params)
+ * @method ChatInviteLink revokeChatInviteLink(array $params)
  * @method bool deleteChatPhoto(array $params)
  * @method bool setChatTitle(array $params)
  * @method bool setChatDescription(array $params)
