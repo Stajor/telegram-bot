@@ -8,9 +8,10 @@ class InlineQuery extends Type {
         'location'  => Location::class
     ];
 
-    public $id;
-    public $from;
-    public $location;
-    public $query;
-    public $offset;
+    public string $id;
+    public User $from;
+    public string $query;
+    public string $offset;
+    public ?Location $location = null;
+    public ?string $chat_type = null;
 }

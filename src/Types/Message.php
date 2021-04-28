@@ -36,6 +36,7 @@ class Message extends Type {
         'poll'                              => Poll::class,
         'message_auto_delete_timer_changed' => MessageAutoDeleteTimerChanged::class,
         'proximity_alert_triggered'         => ProximityAlertTriggered::class,
+        'voice_chat_scheduled'              => VoiceChatScheduled::class,
         'voice_chat_started'                => VoiceChatStarted::class,
         'voice_chat_ended'                  => VoiceChatEnded::class,
         'voice_chat_participants_invited'   => VoiceChatParticipantsInvited::class,
@@ -93,6 +94,7 @@ class Message extends Type {
     public ?string $connected_website = null;
     public ?PassportData $passport_data = null;
     public ?ProximityAlertTriggered $proximity_alert_triggered = null;
+    public ?VoiceChatScheduled $voice_chat_scheduled = null;
     public ?VoiceChatStarted $voice_chat_started = null;
     public ?VoiceChatEnded $voice_chat_ended = null;
     public ?VoiceChatParticipantsInvited $voice_chat_participants_invited = null;
