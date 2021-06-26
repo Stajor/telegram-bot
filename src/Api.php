@@ -83,6 +83,7 @@ use Telegram\Bot\Types\WebhookInfo;
  * @method Message sendAnimation(array $params)
  * @method bool setMyCommands(array $params)
  * @method BotCommand[] getMyCommands()
+ * @method bool deleteMyCommands(array $params)
  * @method Message sendSticker(array $params)
  * @method StickerSet getStickerSet(array $params)
  * @method File uploadStickerFile(array $params)
@@ -164,6 +165,7 @@ class Api {
         'sendAnimation' => ['return' => Message::class],
         'setMyCommands' => [],
         'getMyCommands' => ['return' => BotCommand::class, 'array' => true],
+        'deleteMyCommands' => [],
         'sendSticker' => ['return' => Message::class],
         'getStickerSet' => ['return' => StickerSet::class],
         'uploadStickerFile' => ['return' => File::class],
