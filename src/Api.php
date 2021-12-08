@@ -99,6 +99,8 @@ use Telegram\Bot\Types\WebhookInfo;
  * @method Message sendGame(array $params)
  * @method bool setGameScore(array $params)
  * @method GameHighScore[] getGameHighScores(array $params)
+ * @method bool approveChatJoinRequest(array $params)
+ * @method bool declineChatJoinRequest(array $params)
  */
 class Api {
     const API_URL = 'https://api.telegram.org';
@@ -181,6 +183,8 @@ class Api {
         'sendGame' => ['return' => Message::class],
         'setGameScore' => [],
         'getGameHighScores' => ['return' => GameHighScore::class, 'array' => true],
+        'approveChatJoinRequest' => [],
+        'declineChatJoinRequest' => []
     ];
 
     /**

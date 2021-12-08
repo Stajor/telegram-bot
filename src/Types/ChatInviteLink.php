@@ -13,4 +13,7 @@ class ChatInviteLink extends Type {
     public bool $is_revoked;
     public ?int $expire_date = null;
     public ?int $member_limit = null;
+    public bool $creates_join_request;
+    public ?int $pending_join_request_count = null;
+    public ?string $name = null;
 }

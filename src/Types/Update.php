@@ -16,7 +16,8 @@ class Update extends Type {
         'poll'                  => Poll::class,
         'poll_answer'           => PollAnswer::class,
         'my_chat_member'        => ChatMemberUpdated::class,
-        'chat_member'           => ChatMemberUpdated::class
+        'chat_member'           => ChatMemberUpdated::class,
+        'chat_join_request'     => ChatJoinRequest::class
     ];
 
     public int $update_id;
@@ -33,4 +34,5 @@ class Update extends Type {
     public ?PollAnswer $poll_answer = null;
     public ?ChatMemberUpdated $my_chat_member = null;
     public ?ChatMemberUpdated $chat_member = null;
+    public ?ChatJoinRequest $chat_join_request = null;
 }
