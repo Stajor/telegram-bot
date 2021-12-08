@@ -23,4 +23,6 @@ class Chat extends Type {
     public ?int $slow_mode_delay = null;
     public ?string $sticker_set_name = null;
     public ?bool $can_set_sticker_set = null;
+    public ?bool $has_private_forwards = null;
+    public ?bool $has_protected_content = null;
 }

@@ -99,4 +99,6 @@ class Message extends Type {
     public ?VoiceChatEnded $voice_chat_ended = null;
     public ?VoiceChatParticipantsInvited $voice_chat_participants_invited = null;
     public ?InlineKeyboardMarkup $reply_markup = null;
+    public ?bool $has_protected_content = null;
+    public ?bool $is_automatic_forward = null;
 }
