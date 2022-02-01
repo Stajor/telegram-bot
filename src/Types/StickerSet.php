@@ -11,6 +11,7 @@ class StickerSet extends Type {
     public string $name;
     public string $title;
     public bool $is_animated;
+    public bool $is_video;
     public bool $contains_masks;
     public array $stickers;
     public PhotoSize $thumb;

@@ -8,12 +8,15 @@ class Sticker extends Type {
         'mask_position' => MaskPosition::class
     ];
 
-    public $file_id;
-    public $width;
-    public $height;
-    public $thumb;
-    public $emoji;
-    public $set_name;
-    public $mask_position;
-    public $file_size;
+    public string $file_id;
+    public string $file_unique_id;
+    public int $width;
+    public int $height;
+    public bool $is_animated;
+    public bool $is_video;
+    public ?PhotoSize $thumb;
+    public ?string $emoji;
+    public ?string $set_name;
+    public ?MaskPosition $mask_position;
+    public ?int $file_size;
 }

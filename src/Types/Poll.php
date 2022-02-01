@@ -18,7 +18,7 @@ class Poll extends Type {
     public bool $allows_multiple_answers;
     public int $correct_option_id;
     public string $explanation;
-    public MessageEntity $explanation_entities;
+    public array $explanation_entities;
     public int $open_period;
     public int $close_date;
 }
