@@ -60,7 +60,7 @@ class Message extends Type {
     public ?string $media_group_id = null;
     public ?string $author_signature = null;
     public ?string $text = null;
-    public ?MessageEntity $entities = null;
+    public mixed $entities = null;
     public ?Animation $animation = null;
     public ?Audio $audio = null;
     public ?Document $document = null;
