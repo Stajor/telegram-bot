@@ -70,7 +70,7 @@ class Message extends Type {
     public ?VideoNote $video_note = null;
     public ?Voice $voice = null;
     public ?string $caption = null;
-    public ?array $caption_entities = null;
+    public $caption_entities = null;
     public ?Contact $contact = null;
     public ?Dice $dice = null;
     public ?Game $game = null;
